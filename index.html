@@ -34,33 +34,37 @@
 
 <script>
     const sheetId = "1uurVEcwLHrp6i5AJukY1Y2ux9k5a5s6semJYkLwyJ9g"; 
-    const base = https://google.com{sheetId}/gviz/tq?tqx=out:json;
+    // መረጃውን ደህንነቱ በተጠበቀ የTSV ፎርማት በቀጥታ መሳብ (በ2026 በጣም አስተማማኙ መንገድ)
+    const url = `https://google.com{sheetId}/pub?output=tsv`;
 
-    fetch(base)
-        .then(res => res.text())
-        .then(data => {
-            const temp = data.substring(47).slice(0, -2);
-            const json = JSON.parse(temp);
-            const rows = json.table.rows;
-            
+    fetch(url)
+        .then(res => {
+            if(!res.ok) throw new Error();
+            return res.text();
+        })
+        .then(tsvText => {
+            const lines = tsvText.split('\n');
             document.getElementById("loading-text").style.display = "none";
             const mainContainer = document.getElementById("menu-sections");
 
             let categories = {};
 
-            rows.forEach((row, index) => {
-                if (index === 0) return; 
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
                 
-                const cat = row.c && row.c[0] ? row.c[0].v : "ሌሎች ምግቦች";
-                const name = row.c && row.c[1] ? row.c[1].v : "";
-                const price = row.c && row.c[2] ? row.c[2].v : "";
-                const img = row.c && row.c[3] ? row.c[3].v : "placeholder.jpg";
+                // በታብ (Tab) የተከፋፈለውን የኤክሴል ዳታ መለየት
+                const parts = lines[i].split('\t').map(part => part.trim());
+                
+                const cat = parts[0] || "ሌሎች ምግቦች";
+                const name = parts[1] || "";
+                const price = parts[2] || "0";
+                const img = parts[3] || "placeholder.jpg";
 
-                if (name !== "") {
+                if (name) {
                     if (!categories[cat]) categories[cat] = [];
                     categories[cat].push({ name, price, img });
                 }
-            });
+            }
 
             for (let catName in categories) {
                 let catTitle = document.createElement("div");
@@ -74,12 +78,11 @@
                 categories[catName].forEach(item => {
                     let card = document.createElement("div");
                     card.className = "menu-card";
-
-card.innerHTML = 
+                    card.innerHTML = `
                         <img src="${item.img}" alt="${item.name}">
                         <h3>${item.name}</h3>
                         <p>${item.price} ብር</p>
-                    ;
+                    `;
                     cardContainer.appendChild(card);
                 });
 
@@ -87,7 +90,7 @@ card.innerHTML =
             }
         })
         .catch(err => {
-            document.getElementById("loading-text").innerText = "❌ ሜኑውን መጫን አልተቻለም። እባክዎ የGoogle Sheet ማጋራቱን ያረጋግጡ።";
+            document.getElementById("loading-text").innerHTML = "❌ ሜኑውን መጫን አልተቻለም።<br><br>💡 እባክዎ የGoogle Sheet ፋይልዎ ላይ <b>'Publish to web'</b> ማድረጉን ያረጋግጡ።";
         });
 </script>
 
