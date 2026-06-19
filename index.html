@@ -1,59 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="am">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nebiyu Restaurant</title>
-<style>
-body{
-font-family:Arial;
-background:#f5f5f5;
-text-align:center;
-margin:0;
-}
-h1{
-background:#d4a017;
-color:white;
-padding:20px;
-margin:0;
-}
-.menu{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:10px;
-}
-.item{
-background:white;
-padding:10px;
-border-radius:10px;
-box-shadow:0 2px 5px gray;
-}
-img{
-width:100%;
-border-radius:10px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ነቢዩ ሬስቶራንት - ዲጂታል ሜኑ</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f6f9; color: #333; text-align: center; }
+        header { background-color: #d49a15; color: white; padding: 25px 10px; font-size: 28px; font-weight: bold; border-bottom: 4px solid #b5810e; }
+        .contact-info { background: #333; color: #fff; padding: 8px; font-size: 14px; font-weight: bold; }
+        .contact-info a { color: #d49a15; text-decoration: none; }
+        .category-title { background: #e9ecef; color: #d49a15; padding: 12px; margin: 25px 0 15px 0; font-size: 22px; font-weight: bold; border-left: 5px solid #d49a15; border-right: 5px solid #d49a15; }
+        .menu-container { display: flex; flex-wrap: wrap; justify-content: center; padding: 10px; gap: 15px; }
+        .menu-card { background: white; border-radius: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); width: 165px; padding: 12px; border: 1px solid #eee; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+        .menu-card img { width: 100%; height: 110px; object-fit: cover; border-radius: 10px; background-color: #eaeaea; }
+        .menu-card h3 { margin: 10px 0 5px; font-size: 16px; font-weight: 600; color: #222; }
+        .menu-card p { color: #d49a15; font-weight: bold; margin: 0; font-size: 15px; }
+        footer { margin: 40px 0 20px 0; font-size: 14px; color: #777; }
+    </style>
 </head>
 <body>
 
-<h1>ነቢዩ ሬስቶራንት<br>Nebiyu Restaurant</h1>
+<header>
+    ነቢዩ ሬስቶራንት
+    <div style="font-size: 18px; font-weight: normal; margin-top: 5px;">Nebiyu Restaurant</div>
+</header>
+<div class="contact-info">📞 ስልክ ማዘዣ: <a href="tel:+251922322507">0922322507</a></div>
 
-<div class="menu">
-
-<div class="item">
-<img src="https://via.placeholder.com/200">
-<h3>ክትፎ</h3>
-<p>500 ብር</p>
+<!-- 1. የፍስክ ምግቦች ክፍል -->
+<div class="category-title">🍗 የ ፍስክ ምግቦች</div>
+<div class="menu-container">
+    <div class="menu-card"><img src="bere_kitfo.jpg" alt="የበሬ ክትፎ"><h3>የ በሬ ክትፎ</h3><p>850 ብር</p></div>
+    <div class="menu-card"><img src="kurte.jpg" alt="ቁርጥ ሥጋ"><h3>ቁርጥ ሥጋ</h3><p>750 ብር</p></div>
+    <div class="menu-card"><img src="tibse.jpg" alt="ጥብስ"><h3>ጥብስ</h3><p>450 ብር</p></div>
+    <div class="menu-card"><img src="doro.jpg" alt="ዶሮ ወጥ"><h3>ዶሮ ወጥ</h3><p>600 ብር</p></div>
+    <div class="menu-card"><img src="minchet.jpg" alt="ምንቼት አቢሽ"><h3>ምንቼት አቢሽ</h3><p>350 ብር</p></div>
+    <div class="menu-card"><img src="gored.jpg" alt="ጎረድ ጎረድ"><h3>ጎረድ ጎረድ</h3><p>800 ብር</p></div>
+    <div class="menu-card"><img src="shekla.jpg" alt="ሸክላ ጥብስ"><h3>ሸክላ ጥብስ</h3><p>600 ብር</p></div>
+    <div class="menu-card"><img src="special_kitfo.jpg" alt="ስፔሻል ክትፎ"><h3>ስፔሻል ክትፎ</h3><p>1100 ብር</p></div>
 </div>
 
-<div class="item">
-<img src="https://via.placeholder.com/200">
-<h3>ጥብስ</h3>
-<p>450 ብር</p>
+<!-- 2. የፆም ምግቦች ክፍል -->
+<div class="category-title">🥗 የ ፆም ምግቦች</div>
+<div class="menu-container">
+    <div class="menu-card"><img src="beyaynetu.jpg" alt="በያይነቱ"><h3>በ ያይነት</h3><p>250 ብር</p></div>
+    <div class="menu-card"><img src="shiro.jpg" alt="ሽሮ ፈሰስ"><h3>ሽሮ ፈሰስ</h3><p>180 ብር</p></div>
+    <div class="menu-card"><img src="tegabino.jpg" alt="ተጋቢኖ ሽሮ"><h3>ተጋቢኖ ሽሮ</h3><p>220 ብር</p></div>
+    <div class="menu-card"><img src="tsom_gomen.jpg" alt="የፆም ጎመን"><h3>የፆም ጎመን</h3><p>150 ብር</p></div>
+    <div class="menu-card"><img src="misir.jpg" alt="ምስር ወጥ"><h3>ምስር ወጥ</h3><p>160 ብር</p></div>
+    <div class="menu-card"><img src="tsom_firfir.jpg" alt="የፆም ፍርፍር"><h3>የፆም ፍርፍር</h3><p>170 ብር</p></div>
 </div>
 
+<!-- 3. ፈጣን ምግቦች ክፍል -->
+<div class="category-title">🍔 ፈጣን ምግቦች (Fast Foods)</div>
+<div class="menu-container">
+    <div class="menu-card"><img src="burger.jpg" alt="በርገር"><h3>በርገር</h3><p>300 ብር</p></div>
+    <div class="menu-card"><img src="pizza.jpg" alt="ፒዛ"><h3>ፒዛ</h3><p>450 ብር</p></div>
+    <div class="menu-card"><img src="sandwich.jpg" alt="ሳንድዊች"><h3>ሳንድዊች</h3><p>200 ብር</p></div>
+    <div class="menu-card"><img src="chips.jpg" alt="ቺፕስ"><h3>ቺፕስ</h3><p>150 ብር</p></div>
 </div>
+
+<!-- 4. ሙቅ መጠጦች ክፍል -->
+<div class="category-title">☕ ሙቅ መጠጦች</div>
+<div class="menu-container">
+    <div class="menu-card"><img src="buna.jpg" alt="ቡና"><h3>ቡና</h3><p>40 ብር</p></div>
+    <div class="menu-card"><img src="shahi.jpg" alt="ሻይ"><h3>ሻይ</h3><p>30 ብር</p></div>
+    <div class="menu-card"><img src="maciato.jpg" alt="ማኪያቶ"><h3>ማኪያቶ</h3><p>60 ብር</p></div>
+    <div class="menu-card"><img src="lemo_shahi.jpg" alt="ሎሚ ሻይ"><h3>ሎሚ ሻይ</h3><p>40 ብር</p></div>
+    <div class="menu-card"><img src="milk.jpg" alt="ወተት"><h3>ወተት</h3><p>70 ብር</p></div>
+</div>
+
+<!-- 5. ቀዝቃዛ መጠጦች እና ጁስ ክፍል -->
+<div class="category-title">🍹 ቀዝቃዛ መጠጦች እና ጁስ</div>
+<div class="menu-container">
+    <div class="menu-card"><img src="soft.jpg" alt="ለስላሳ"><h3>ለስላሳ</h3><p>50 ብር</p></div>
+    <div class="menu-card"><img src="ambo.jpg" alt="አምቦ ውሃ"><h3>አምቦ ውሃ</h3><p>60 ብር</p></div>
+    <div class="menu-card"><img src="wuha.jpg" alt="የታሸገ ውሃ"><h3>የታሸገ ውሃ</h3><p>40 ብር</p></div>
+    <div class="menu-card"><img src="juice.jpg" alt="ስፔሻል ጁስ"><h3>ስፔሻል ጁስ</h3><p>180 ብር</p></div>
+    <div class="menu-card"><img src="avocado.jpg" alt="አቮካዶ ጁስ"><h3>አቮካዶ ጁስ</h3><p>150 ብር</p></div>
+    <div class="menu-card"><img src="mango.jpg" alt="ማንጎ ጁስ"><h3>ማንጎ ጁስ</h3><p>150 ብር</p></div>
+</div>
+
+<footer>© ነቢዩ ሬስቶራንት - ዲጂታል ሜኑ</footer>
 
 </body>
-</html>
+  </html>
+  
