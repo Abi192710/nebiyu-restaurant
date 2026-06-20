@@ -5,49 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ነቢዩ ሬስቶራንት - Nebiyu Restaurant</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #f4f6f9; color: #333; padding-bottom: 60px; }
-        
-        /* Navbar & Language Switcher */
-        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); sticky: top; position: -webkit-sticky; position: sticky; top: 0; z-index: 100; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 100; }
         .logo { font-size: 20px; font-weight: bold; color: #b32d2e; }
-        .lang-btn { background: #b32d2e; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 14px; }
-        
-        /* Hero Header */
-        header { text-align: center; padding: 40px 20px; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://unsplash.com') center/cover; color: white; }
+        .lang-btn { background: #b32d2e; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: bold; }
+        header { text-align: center; padding: 40px 20px; background: #444; color: white; }
         header h1 { font-size: 32px; margin-bottom: 5px; }
         header p { font-size: 16px; opacity: 0.9; }
-
-        /* Container */
         .container { max-width: 1000px; margin: auto; padding: 15px; }
-        
-        /* Category Titles */
         .category-title { margin: 30px 0 15px 0; color: #2c3e50; border-left: 5px solid #b32d2e; padding-left: 10px; font-size: 22px; }
-        
-        /* 2-Column Responsive Grid */
         .menu-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         @media(min-width: 650px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
-        
-        /* Menu Cards */
-        .menu-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; transition: transform 0.2s; }
-        .menu-card:hover { transform: translateY(-3px); }
-        .menu-img { width: 100%; height: 200px; object-fit: cover; }
+        .menu-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; }
+        .menu-img { width: 100%; height: 180px; object-fit: cover; background: #ddd; }
         .menu-details { padding: 15px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
         .menu-info h3 { font-size: 18px; color: #222; margin-bottom: 5px; }
-        .menu-info p { font-size: 14px; color: #777; margin-bottom: 12px; line-height: 1.4; }
-        
-        /* Price and Action Row */
+        .menu-info p { font-size: 14px; color: #777; margin-bottom: 12px; }
         .card-action { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
         .price { font-size: 18px; font-weight: bold; color: #b32d2e; }
-        .order-btn { background: #25D366; color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
-        .order-btn:hover { background: #20ba5a; }
-
+        .order-btn { background: #25D366; color: white; text-decoration: none; padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: bold; }
         footer { text-align: center; padding: 30px; color: #888; font-size: 14px; }
     </style>
 </head>
 <body>
 
-    <!-- የቋንቋ መቀያየሪያ አሞሌ -->
     <div class="navbar">
         <div class="logo" id="nav-logo">ነቢዩ ሬስቶራንት</div>
         <button class="lang-btn" onclick="toggleLanguage()" id="lang-toggle">English</button>
@@ -58,47 +40,53 @@
         <p id="hero-subtitle">የእርሶ ተመራጭ የባህል እና ዘመናዊ ምግቦች ማእከል</p>
     </header>
 
-    <div class="container" id="menu-container">
-        <!-- በጃቫስክሪፕት በኩል ሜኑው እዚህ ይሞላል -->
-    </div>
+    <div class="container" id="menu-container"></div>
 
     <footer>
         <p>© 2026 Nebiyu Restaurant. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // የቋንቋ ሁነታ (am = አማርኛ, en = English)
         let currentLang = 'am';
 
-        // የምግብ መረጃዎች ዝርዝር
         const menuData = [
-            // 1. ክትፎ
-            { catAm: "የክትፎ አይነቶች", catEn: "Kitfo Varieties", nameAm: "የበሬ ክትፎ", nameEn: "Beef Kitfo", descAm: "ትኩስ ጥሬ ስጋ በጥራት ተመርጦ በሚጥሚጣና በቅቤ የተዘጋጀ", descEn: "Finely minced lean beef mixed with mitmita and niter kibbeh", price: 850, img: "https://unsplash.com" },
-            { catAm: "የክትፎ አይነቶች", catEn: "Kitfo Varieties", nameAm: "የፍየል ክትፎ", nameEn: "Goat Kitfo", descAm: "ለስላሳ የፍየል ስጋ በሚጥሚጣና በኮረሪማ የተከሸነ", descEn: "Minced fresh goat meat seasoned with traditional spices and butter", price: 1400, img: "https://unsplash.com" },
+            { catAm: "የክትፎ አይነቶች", catEn: "Kitfo Varieties", nameAm: "የበሬ ክትፎ", nameEn: "Beef Kitfo", descAm: "በትኩስ ቅቤ የተከሸነ", descEn: "Fresh minced beef with butter", price: 850, img: "https://picsum.photos" },
+            { catAm: "የክትፎ አይነቶች", catEn: "Kitfo Varieties", nameAm: "የፍየል ክትፎ", nameEn: "Goat Kitfo", descAm: "በቅመማ ቅመም የተሰራ", descEn: "Minced fresh goat meat", price: 1400, img: "https://picsum.photos" },
             
-            // 2. ቁርጥ
-            { catAm: "ቁርጥ", catEn: "Kurt (Raw Meat)", nameAm: "1 ኪሎ የፍየል ቁርጥ", nameEn: "1 KG Goat Kurt", descAm: "ባህላዊ የፍየል ቁርጥ ከአዋዜና ሰናፍጭ ጋር", descEn: "1 Kilogram of fresh raw goat meat served with awaze and mustard", price: 2700, img: "https://unsplash.com" },
-            { catAm: "ቁርጥ", catEn: "Kurt (Raw Meat)", nameAm: "1/2 ኪሎ የፍየል ቁርጥ", nameEn: "1/2 KG Goat Kurt", descAm: "ምርጥ የፍየል ቁርጥ በግማሽ ኪሎ", descEn: "Half kilogram of fresh raw goat meat with traditional dips", price: 1350, img: "https://unsplash.com" },
+            { catAm: "ቁርጥ", catEn: "Kurt (Raw Meat)", nameAm: "1 ኪሎ የፍየል ቁርጥ", nameEn: "1 KG Goat Kurt", descAm: "ከአዋዜ ጋር የሚቀርብ", descEn: "1 KG fresh raw goat meat", price: 2700, img: "https://picsum.photos" },
+            { catAm: "ቁርጥ", catEn: "Kurt (Raw Meat)", nameAm: "1/2 ኪሎ የፍየል ቁርጥ", nameEn: "1/2 KG Goat Kurt", descAm: "ምርጥ የፍየል ቁርጥ", descEn: "Half KG raw goat meat", price: 1350, img: "https://picsum.photos" },
             
-            // 3. ጥብስ
-            { catAm: "የጥብስ አይነቶች", catEn: "Tibs Varieties", nameAm: "ሸክላ ጥብስ", nameEn: "Shekla Tibs", descAm: "በትኩስ የሸክላ ምድጃ ላይ በሽንኩርትና ቃሪያ የተጠበሰ ስጋ", descEn: "Sizzling meat cubes sautéed with onions and green peppers in a clay pot", price: 1200, img: "https://unsplash.com" },
-            { catAm: "የጥብስ አይነቶች", catEn: "Tibs Varieties", nameAm: "ያገር ቤት ጥብስ", nameEn: "Yager Bet Tibs", descAm: "በባህላዊ ቅመማ ቅመም ለግም ተደርጎ የተጠበሰ", descEn: "Traditional country-style pan-fried meat with local seasonings", price: 1000, img: "https://unsplash.com" },
+            { catAm: "የጥብስ አይነቶች", catEn: "Tibs Varieties", nameAm: "ሸክላ ጥብስ", nameEn: "Shekla Tibs", descAm: "በትኩስ ሸክላ የሚቀርብ", descEn: "Sizzling clay-pot meat tibs", price: 1200, img: "https://picsum.photos" },
+            { catAm: "የጥብስ አይነቶች", catEn: "Tibs Varieties", nameAm: "ያገር ቤት ጥብስ", nameEn: "Yager Bet Tibs", descAm: "በባህላዊ ቅመማ ቅመም", descEn: "Traditional pan-fried meat", price: 1000, img: "https://picsum.photos" },
             
-            // 4. ወጥና ሌሎች
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ቀይ ወጥ", nameEn: "Key Wot", descAm: "በበርበሬና በሽንኩርት በደንብ የበሰለ የበሬ ስጋ ወጥ", descEn: "Spicy beef stew simmered in rich berbere sauce and onions", price: 700, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ዱለት", nameEn: "Dulet", descAm: "የተከተፈ የጥጃ ወይም የደቦል ስጋ፣ ከርሰና ጉበት በቅቤ የተሰራ", descEn: "Finely minced tripe, liver, and lean beef cooked with butter and spices", price: 600, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ጎመን በስጋ", nameEn: "Gomen", descAm: "ትኩስ የሀገር ቤት ጎመን በቅቤና በስጋ ቁርጥራጮች የተሰራ", descEn: "Collard greens cooked with meat chunks, butter, and garlic", price: 500, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "እንቁላል ፍርфር", nameEn: "Scrambled Eggs", descAm: "በሽንኩርት፣ ቲማቲም እና ቃሪያ የተሰራ ትኩስ ቁርስ", descEn: "Scrambled eggs with onions, tomatoes, and green peppers", price: 300, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "የገበታ በያይነት", nameEn: "Beyaynetu", descAm: "ልዩ ልዩ የጾም ወጦች ክምችት ከትኩስ እንጀራ ጋር", descEn: "A colorful platter of various vegan stews served on injera", price: 300, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "የሽሮ ፈሰስ", nameEn: "Shiro Wot", descAm: "የተቀመመ የሽንብራ ዱቄት ወጥ በቅቤ", descEn: "Delicious chickpea powder stew served hot with injera", price: 300, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ፓስታ", nameEn: "Pasta", descAm: "በቲማቲም ሰስ ወይም በአትክልት የተሰራ ፓስታ", descEn: "Pasta served with rich tomato sauce or mixed vegetables", price: 300, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ስፔሻል ፉል", nameEn: "Special Ful", descAm: "በትኩስ ቅቤ፣ እርጎ፣ ሽንኩርት እና ቲማቲም የደመቀ ፉል", descEn: "Fava beans mashed and topped with yogurt, butter, and veggies", price: 250, img: "https://unsplash.com" },
-            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ኖርማል ፉል", nameEn: "Normal Ful", descAm: "በትኩስ ዳቦ እና በዘይት የተዘጋጀ መደበኛ ፉል", descEn: "Standard fava bean dish served with bread and vegetable oil", price: 200, img: "https://unsplash.com" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ቀይ ወጥ", nameEn: "Key Wot", descAm: "በበርበሬ የበሰለ ወጥ", descEn: "Spicy beef stew", price: 700, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ዱለት", nameEn: "Dulet", descAm: "በቅቤ የተሰራ ጣፋጭ ዱለት", descEn: "Minced tripe and meat", price: 600, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ጎመን በስጋ", nameEn: "Gomen", descAm: "ጎመን ከስጋ ቁርጥራጭ ጋር", descEn: "Collard greens with meat", price: 500, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "እንቁላል ፍርፍር", nameEn: "Scrambled Eggs", descAm: "በሽንኩርትና ቲማቲም", descEn: "Scrambled eggs with veggies", price: 300, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "የገበታ በያይነት", nameEn: "Beyaynetu", descAm: "ልዩ ልዩ የጾም ወጦች", descEn: "Mixed vegan stews Platter", price: 300, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "የሽሮ ፈሰስ", nameEn: "Shiro Wot", descAm: "የተቀመመ የሽንብራ ወጥ", descEn: "Delicious chickpea stew", price: 300, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ፓስታ", nameEn: "Pasta", descAm: "በቲማቲም ሰስ የተሰራ", descEn: "Pasta with tomato sauce", price: 300, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ስፔሻል ፉል", nameEn: "Special Ful", descAm: "በእርጎና በቅቤ የደመቀ", descEn: "Fava beans with yogurt", price: 250, img: "https://picsum.photos" },
+            { catAm: "ወጥ እና ዋና ምግቦች", catEn: "Wot & Main Dishes", nameAm: "ኖርማል ፉል", nameEn: "Normal Ful", descAm: "በዳቦና በዘይት የተዘጋጀ", descEn: "Standard fava bean dish", price: 200, img: "https://picsum.photos" },
             
-            // 5. መጠጦች
-            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ቡና", nameEn: "Coffee", descAm: "በባህል የተቆላና የተፈለገ ምርጥ የሀበሻ ቡና", descEn: "Freshly roasted and brewed traditional Ethiopian coffee", price: 60, img: "https://unsplash.com" },
-            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ሻይ", nameEn: "Tea", descAm: "ትኩስ የቅመም ሻይ", descEn: "Hot aromatic spiced tea", price: 40, img: "https://unsplash.com" },
-            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ማኪያቶ", nameEn: "Macchiato", descAm: "ጥቅጥቅ ያለ ትኩስ ማኪያቶ", descEn: "Rich, creamy traditional espresso macchiato", price: 100, img: "https://unsplash.com" },
-            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ትኩስ ወተት", nameEn: "Hot Milk", descAm: "ትኩስና ንጹህ ላም ወተት", descEn: "Fresh steaming hot milk", price: 100, img: "https://unsplash.com" },
-            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ለውዝ ሻይ", nameEn: "Peanut Tea", descAm: "በለውዝ ክሬም የተለወሰ ልዩ ትኩስ ሻይ", descEn: "A unique hot tea mixed with rich peanut paste", price: 100, img: "https://unsplash.com" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ቡና", nameEn: "Coffee", descAm: "ምርጥ የሀበሻ ቡና", descEn: "Traditional coffee", price: 60, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ሻይ", nameEn: "Tea", descAm: "ትኩስ የቅመም ሻይ", descEn: "Hot spiced tea", price: 40, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ማኪያቶ", nameEn: "Macchiato", descAm: "ጥቅጥቅ ያለ ማኪያቶ", descEn: "Creamy macchiato", price: 100, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ትኩስ ወተት", nameEn: "Hot Milk", descAm: "ንጹህ የላም ወተት", descEn: "Fresh hot milk", price: 100, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ለውዝ ሻይ", nameEn: "Peanut Tea", descAm: "ልዩ የለውዝ ሻይ", descEn: "Rich peanut tea", price: 100, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "2 ሊትር ውሃ", nameEn: "2L Water", descAm: "የታሸገ ንጹህ ውሃ", descEn: "Large bottled water", price: 80, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "1 ሊትር ውሃ", nameEn: "1L Water", descAm: "መካከለኛ የታሸገ ውሃ", descEn: "Medium bottled water", price: 60, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "1/2 ሊትር ውሃ", nameEn: "0.5L Water", descAm: "ትንሽ የታሸገ ውሃ", descEn: "Small bottled water", price: 40, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ድራፍት ጃምቦ", nameEn: "Draft Jumbo", descAm: "ቀዝቃዛ ድራፍት ቢራ", descEn: "Large chilled draft beer", price: 160, img: "https://picsum.photos" },
+            { catAm: "ትኩስና ቀዝቃዛ መጠጦች", catEn: "Hot & Cold Drinks", nameAm: "ሲንግል ድራፍት", nameEn: "Draft Single", descAm: "መካከለኛ ድራፍት", descEn: "Single regular draft beer", price: 80, img: "https://picsum.photos" },
+            
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "አቮካዶ ጁስ", nameEn: "Avocado Juice", descAm: "ትኩስ የአቮካዶ ጁስ", descEn: "Fresh avocado juice", price: 250, img: "https://picsum.photos" },
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "ፓፓያ ጁስ", nameEn: "Papaya Juice", descAm: "ጣፋጭ የፓፓያ ጁስ", descEn: "Fresh papaya juice", price: 250, img: "https://picsum.photos" },
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "ማንጎ ጁስ", nameEn: "Mango Juice", descAm: "የበሰለ ማንጎ ጁስ", descEn: "Fresh mango juice", price: 250, img: "https://picsum.photos" },
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "ሀብሐብ ጁስ", nameEn: "Watermelon Juice", descAm: "ጥማት ቆራጭ ጁስ", descEn: "Fresh watermelon juice", price: 250, img: "https://picsum.photos" },
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "ስትሮውቤሪ ጁስ", nameEn: "Strawberry Juice", descAm: "ጣፋጭ ስትሮውቤሪ ጁስ", descEn: "Fresh strawberry juice", price: 250, img: "https://picsum.photos" },
+            { catAm: "ትኩስ የፍራፍሬ ጁሶች", catEn: "Fresh Fruit Juices", nameAm: "ብርቱካን ጁስ", nameEn: "Orange Juice", descAm: "የተፈጥሮ ብርቱካን ጭማቂ", descEn: "Fresh orange juice", price: 250, img: "https://picsum.photos" }
+        ];
+
+        function renderMenu() {
         
